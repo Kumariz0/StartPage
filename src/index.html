@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>N~/startpage</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&amp;display=swap" rel="stylesheet" />
+
+  <!-- anime.js -->
+  <script defer="" src="./image.gif"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+
+  <!--cookies 🍪-->
+  <script>
+    // Set a cookie
+    function setCookie(name, value, days) {
+      try {
+        document.cookie = name + "=" + value + "; SameSite=None; Secure" + "; expires=Thu, 13 Jan 2000 12:00:00 UTC" + "; path=/";
+      } catch (error) {
+        alert("error")
+      }
+      document.cookie = name + "=" + value + "; SameSite=None; Secure" + "; expires=Thu, 13 Jan 2100 12:00:00 UTC" + "; path=/";
+    }
+
+    // Get a cookie
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var tempcookie = cookies[i];
+        while (tempcookie.charAt(0) == ' ') tempcookie = tempcookie.substring(1, tempcookie.length);
+        if (tempcookie.indexOf(nameEQ) == 0) return tempcookie.substring(nameEQ.length, tempcookie.length);
+      }
+      return null;
+    }
+
+
+
+    // Save the toggle button state to a cookie
+    function saveToggleButtonState() {
+      if (getCookie("toggledButton") != 1 && getCookie("toggledButton") != 0) {
+        setCookie("toggledButton", 0);
+      } else {
+        if (getCookie("toggledButton") == 0) {
+          setCookie("toggledButton", 1)
+          document.getElementById("mode-svg").src = "images/work.svg"
+
+        } else {
+          setCookie("toggledButton", 0)
+          document.getElementById("mode-svg").src = "images/home.svg"
+        }
+      }
+    }
+
+
+
+    // Restore the toggle button state from a cookie
+    function restorePageState() {
+      if (getCookie("toggledButton") == 0) {
+        document.getElementById("mode-svg").src = "images/home.svg"
+      } else {
+        document.getElementById("mode-svg").src = "images/work.svg"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <img src="images\home.svg" alt="SVG" onclick="saveToggleButtonState()" id="mode-svg" class="toggle-svg">
+    <div id="img" class="gif">
+      <img src="./images/image.gif" />
+    </div>
+  </header>
+
+  <main style="opacity: 0;">
+    <div id="content">
+      <div id="head">
+        <form action="https://google.com/search">
+          <label for="q" autofocus>
+            <div class="orange" style="display: inline-block;">heck</div>:~$ wget "
+          </label>
+          <input type="text" name="q" autocomplete="off" autofocus />"
+        </form>
+        <div id="info">
+          <p id="weatherDesc">Loading...</p>
+          <p id="temp">Loading...</p>
+        </div>
+      </div>
+      <div id="links">
+        <section>
+          <h3>Social networks</h3>
+          <ul>
+            <li><a href="https://youtube.com">Youtube</a></li>
+            <li><a href="https://twitch.com">Twitch</a></li>
+            <li><a href="https://twitter.com">Twitter</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>streaming</h3>
+          <ul>
+            <li><a href="https://netflix.com">Netlifx</a></li>
+            <li><a href="https://9anime.to/home">9Anime</a></li>
+            <li>
+              <a href="https://www.amazon.de/Amazon-Video/b?ie=UTF8&node=3010075031">Prime Video</a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Sea Of Thieves</h3>
+          <ul>
+            <li>
+              <a href="https://www.seaofthieves.com/insider">Insider build</a>
+            </li>
+            <li>
+              <a href="https://www.merfolkslullaby.com/de">merfolkslullaby</a>
+            </li>
+            <li>
+              <a href="https://seaofthieves.fandom.com/wiki/Sea_of_Thieves_Wiki">SoT fandom</a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Gaming / general PC stuff</h3>
+          <ul>
+            <li><a href="https://grabfreegames.com/">Free games</a></li>
+            <li><a href="https://leafguides.xyz/">Leaf guides</a></li>
+            <li><a href="https://open.spotify.com">Spotify</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <a href="https://github.com/Kumariz0">Github</a>
+  </footer>
+  <script src="anime.min.js"></script>
+  <script type="module">
+    // ----- CHANGE THESE VARIABLES
+
+    // Do you want to show the weather?
+    const weather = true;
+    // Do you want animations?
+    const animated = true;
+
+    // Read the documentation for setting the weather API key
+    const apiKey = "48d85e8017df528d1e1f46d9cf1e578b";
+    const lat = 51.164;
+    const lon = 6.722;
+    const units = "metric";
+
+    // ----- DON'T TOUCH ANYTHING BELOW THIS UNLESS YOU KNOW WHAT YOU'RE DOING
+    {
+      var weatherEl = document.getElementById("weatherDesc");
+      var tempEl = document.getElementById("temp");
+
+      if (weather) {
+        var apiLink =
+          "https://api.openweathermap.org/data/2.5/weather?lat=" +
+          lat +
+          "&lon=" +
+          lon +
+          "&units=" +
+          units +
+          "&appid=" +
+          apiKey;
+        console.log(apiLink);
+        // grabs json data from url, thanks https://stackoverflow.com/a/35970894
+        var getJSON = function (url, callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.responseType = "json";
+          xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+              callback(null, xhr.response);
+            } else {
+              callback(status, xhr.response);
+            }
+          };
+          xhr.send();
+        };
+
+        // gets city name from weather api
+        getJSON(apiLink, function (err, data) {
+          if (err !== null) {
+            weatherEl.innerText = "";
+            tempEl.innerText = "";
+          } else {
+            var city = data.name;
+            var temp = data.main.temp;
+            var hiTemp = data.main.temp_max;
+            var loTemp = data.main.temp_min;
+            var weatherDesc = data.weather[0].description;
+            weatherEl.innerHTML = weatherDesc + " in " + city;
+            tempEl.innerHTML =
+              "h: " + hiTemp + "° / c: " + temp + "° / l: " + loTemp + "°";
+          }
+        });
+      } else {
+        weatherEl.innerText = "";
+        tempEl.innerText = "";
+      }
+
+      if (animated) {
+        // hides all elements
+        document
+          .querySelectorAll("*")
+          .forEach((el) => (el.style.opacity = 0));
+
+        // anime.js animation function
+        function playAnimation() {
+          var tl = anime.timeline({
+            easing: "easeInOutExpo",
+            duration: 2200,
+          });
+
+          tl.add({
+            targets: ".gif",
+            opacity: [0, 1],
+            translateY: [200, 0],
+          })
+            .add(
+              {
+                targets: ".gif",
+                width: ["100%", "60%"],
+              },
+              "-=1400"
+            )
+            .add(
+              {
+                targets: "main *",
+                opacity: [0, 1],
+                translateY: [10, 0],
+                delay: anime.stagger(20),
+              },
+              "-=1800"
+            )
+            .add(
+              {
+                targets: ".toggle-svg",
+                opacity: [0, 1],
+                translateY: [-50, 0],
+                delay: anime.stagger(20),
+              },
+              "-=1800"
+            );
+        }
+
+        window.onload = function () {
+          restorePageState()
+          document
+            .querySelectorAll("*")
+            .forEach((el) => (el.style.opacity = 1));
+          playAnimation();
+        };
+      }
+    }
+  </script>
+</body>
+
+</html>
