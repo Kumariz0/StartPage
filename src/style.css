@@ -103,7 +103,7 @@ form input {
   display: inline-block;
   border: none;
   background-color: var(--color-bg-light);
-  padding: 10px;
+  padding: 7px;
   color: var(--color-fg);
   font-family: var(--font-family);
   font-size: 2vw;
@@ -124,6 +124,15 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+.location-reset{
+  padding-right: 10px;
+  color: var(--color-link);
+  cursor: pointer;
+}
+.location-reset:hover {
+  color: var(--color-link-hover);
+  transition-duration: 0.2s;
 }
 
 footer * {
@@ -179,4 +188,5 @@ a:hover {
 
 .orange {
   color: var(--aurora-orange);
+  margin: auto;
 }
