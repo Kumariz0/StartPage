@@ -7,7 +7,7 @@
 
   --color-link-hover: #8fbcbb;
   --color-link: #81a1c1;
-  
+
   --aurora-red: #bf616a;
   --aurora-orange: #d08770;
   --aurora-yellow: #ebcb8b;
@@ -15,8 +15,6 @@
   --auroa-purple: #b48ead;
 
   --font-family: "Source Code Pro", monospace;
-
-
 }
 
 * {
@@ -49,10 +47,12 @@ header div#img {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.3%;
 }
 
 header div#img img {
   width: 25vw;
+  border-radius: 0.3%;
 }
 
 main {
@@ -112,7 +112,6 @@ form input {
 
 form input:focus {
   outline: none;
-
 }
 
 footer {
@@ -125,7 +124,7 @@ footer {
   align-items: center;
   padding: 10px;
 }
-.location-reset{
+.location-reset {
   padding-right: 10px;
   color: var(--color-link);
   cursor: pointer;
@@ -169,7 +168,7 @@ a:hover {
 .toggle-svg {
   position: absolute;
   padding: 10px;
-  z-index:1;
+  z-index: 1;
 }
 
 @keyframes opacity {
@@ -189,4 +188,19 @@ a:hover {
 .orange {
   color: var(--aurora-orange);
   margin: auto;
+}
+
+/* SVGs */
+.home-svg {
+  position: fixed;
+  padding: 10px;
+  z-index: 1;
+  top: -58px;
+}
+.work-svg {
+  position: fixed;
+  top: 0%;
+  left: -58px;
+  padding: 10px;
+  z-index: 1;
 }
