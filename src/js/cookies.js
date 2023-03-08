@@ -134,10 +134,10 @@ async function changeLinks(pagestate) {
         var title_2 = "Informatik"
         var link_2_1 = "https://github.com/Kumariz0/";
         var link_2_2 = "https://doc.rust-lang.org/book/";
-        var link_2_3 = "https://example.com";
+        var link_2_3 = "https://chat.openai.com/chat";
         var title_3 = "Physik"
-        var link_3_1 = "https://example.com";
-        var link_3_2 = "https://example.com";
+        var link_3_1 = "https://165165.logineonrw-lms.de/course/view.php?id=1865";
+        var link_3_2 = "https://165165.logineonrw-lms.de/mod/resource/view.php?id=52351";
         var link_3_3 = "https://example.com";
         var title_4 = "Chemie"
         var link_4_1 = "https://example.com";
@@ -168,12 +168,12 @@ async function changeLinks(pagestate) {
         _2_1.setAttribute("href", link_2_1);
         _2_2.innerHTML = "Rust book";
         _2_2.setAttribute("href", link_2_2);
-        _2_3.innerHTML = "example";
+        _2_3.innerHTML = "ChatGPT";
         _2_3.setAttribute("href", link_2_3);
         t_3.innerHTML = title_3;
-        _3_1.innerHTML = "example";
+        _3_1.innerHTML = "Physik moodle";
         _3_1.setAttribute("href", link_3_1);
-        _3_2.innerHTML = "example";
+        _3_2.innerHTML = "script";
         _3_2.setAttribute("href", link_3_2);
         _3_3.innerHTML = "example";
         _3_3.setAttribute("href", link_3_3);
